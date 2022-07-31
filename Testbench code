@@ -1,0 +1,76 @@
+// Code your testbench here
+// or browse Examples
+module bool2_tb();
+  reg [7:0]x,y;
+  reg [9:0]PP1;
+  reg [8:0]d;
+  wire [8:0]a,c;
+  wire [8:0]b;
+  reg [8:0]PP2,PP3,PP4;
+  reg [9:0]PP11,PP22;
+  reg [8:0]PP33,PP44;
+  reg [10:0]PP5,PP6;
+  wire [8:0]P1,Q1,R1,S1;
+  wire [8:0]P2,Q2,R2,S2;
+  wire [8:0]P3,Q3,R3,S3;
+  reg Cin0,Cin1,Cin2,Cin3,Cin4; 
+  reg [8:0]Sout1;
+  reg [9:0]Sout2;
+  reg [10:0]Sout3;
+  reg Cout1,Cout2,Cout3;
+  reg C01,C11,C21,C31,C41;
+  reg C02,C12,C22,C32,C42;
+  reg C03,C13,C23,C33,C43;
+  reg [1:0]S01;
+  reg [2:0]S11,S21;
+  reg [3:0]S31,S41;
+  reg [2:0]S02;
+  reg [2:0]S12,S22;
+  reg [3:0]S32,S42;
+  reg [2:0]S03;
+  reg [3:0]S13,S23;
+  reg [3:0]S33,S43;
+  reg [3:0]out01;
+  reg [4:0]out11;
+  reg [3:0]out02;
+  reg [4:0]out12;
+  reg [4:0]out03;
+  reg [4:0]out13;
+  wire [8:0]l;
+  reg cout1,cout2,cout3;
+  reg c01,c11,c02,c12,c03,c13;
+  wire reg[2:0]Cx01;
+  wire reg[3:0]Cx11,Cx21;
+  wire reg[4:0]Cx31,Cx41;
+  wire reg[3:0]Cx02;
+  wire reg[3:0]Cx12,Cx22;
+  wire reg[4:0]Cx32,Cx42;
+  wire reg[3:0]Cx03;
+  wire reg[4:0]Cx13,Cx23;
+  wire reg[4:0]Cx33,Cx43;
+  wire [14:0]p;
+  //wire [9:0]P,Q,R,S;
+  mainCKT dut(x,a,b,c,d,y,PP1,PP2,PP3,PP4,PP5,PP6,PP11,PP22,PP33,PP44,Cin0,S01,C01,Cin1,S11,C11,Cin2,S21,C21,out01,c01,Cin3,S31,C31,Cin4,S41,C41,out11,cout1,Cout1,c11,Cx01,Cx11,Cx21,Cx31,Cx41,Sout1,Sout2,Sout3,P1,Q1,R1,S1,P2,Q2,R2,S2,P3,Q3,R3,S3,p,l);
+  
+  
+  
+  initial
+begin
+  x=8'b00101010; d=9'b000000000; y=8'b01010101;
+  
+   Cin0=0;Cin1=0;Cin2=1;Cin3=0;Cin4=1;
+  #200  x=8'b01010101; d=9'b000000000; y=8'b00101010;
+  #200  x=8'b11001111; d=9'b000000000; y=8'b11111111;
+  #200  x=8'b11001111; d=9'b000000000; y=8'b00011111;
+  #200 $finish;
+end
+  initial
+  begin
+    $monitor("%d, x=%8b, l=%9b, a=%9b, b=%9b, c=%9b, y=%8b, PP1=%9b, PP2=%9b, PP3=%9b, PP4=%9b, PP5=%11b, PP6=%11b,PP11=%10b, PP22=%10b, PP33=%9b, PP44=%9b, Sout1=%9b, Sout2=%10b, Sout3=%11b,P1=%9b,Q1=%9b,R1=%9b,S1=%9b,P2=%9b,Q2=%9b,R2=%9b,S2=%9b,P3=%9b,Q3=%9b,R3=%9b,S3=%9b,p=%15b",$time,x,l,a,b,c,y,PP1,PP2,PP3,PP4,PP5,PP6,PP11,PP22,PP33,PP44,Sout1,Sout2,Sout3,P1,Q1,R1,S1,P2,Q2,R2,S2,P3,Q3,R3,S3,p);
+  end
+  initial
+    begin
+      $dumpfile("mainCKT.vcd");
+      $dumpvars(2,bool2_tb);
+    end
+endmodule
